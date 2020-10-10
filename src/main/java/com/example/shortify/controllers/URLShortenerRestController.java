@@ -10,11 +10,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+@CrossOrigin(origins = "localhost:8080/shortenurl")
 @RestController
 public class URLShortenerRestController {
 
     private Map<String, ShortURL> shortURLMap = new HashMap<>();
 
+    @CrossOrigin
     @RequestMapping(value = "/shortenurl",method = RequestMethod.POST)
     public ResponseEntity<Object> getShortUrl(@RequestBody ShortURL shortURL){
         String randomchar = getRandomChars();
