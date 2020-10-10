@@ -1,6 +1,6 @@
 # Shortify - the URL Shortener
 
-This project is developed for the Software Verification & Validation laboratory
+This project is being developed for the Software Verification & Validation laboratory
 
 ## DevLog
 
