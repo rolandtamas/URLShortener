@@ -1,7 +1,9 @@
 # Shortify - the URL Shortener
 
-DevLog
+This project is developed for the Software Verification & Validation laboratory
 
-	- [x] Created the frontend
+## DevLog
+
+	- [ x ] Created the frontend
 	
-	- [ ] Created the backend
+	- [   ] Created the backend
