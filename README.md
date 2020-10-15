@@ -6,4 +6,6 @@ This project is being developed for the Software Verification & Validation labor
 
 	- [ x ] Created the frontend
 	
-	- [   ] Created the backend
+	- [ x ] Created the backend
+
+	- [ x ] Create Unit tests for the API 
