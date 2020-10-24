@@ -15,7 +15,7 @@ public class URLShortenerRestController {
 
     private Map<String, ShortURL> shortURLMap = new HashMap<>();
 
-    @RequestMapping(value = "/shortenurl",method = RequestMethod.POST)
+    @RequestMapping(value = "/shortenurl",method = RequestMethod.POST) //here the API gets called
     public ResponseEntity<ShortURL> getShortUrl(@RequestBody ShortURL shortURL){
         String randomchar = getRandomChars();
         setShortUrl(randomchar,shortURL);
@@ -33,12 +33,12 @@ public class URLShortenerRestController {
     }
 
     private String getRandomChars(){
-        String randomstr="";
+        StringBuilder randomstr= new StringBuilder();
         String charset="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         for(int i=0;i<5;i++)
         {
-            randomstr += charset.charAt((int)Math.floor(Math.random()*charset.length()));
+            randomstr.append(charset.charAt((int) Math.floor(Math.random() * charset.length())));
         }
-        return randomstr;
+        return randomstr.toString();
     }
 }

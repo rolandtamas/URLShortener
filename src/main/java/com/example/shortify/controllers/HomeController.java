@@ -1,3 +1,4 @@
+//this class fetches the pages and maps them to the respective URLs
 package com.example.shortify.controllers;
 
 import org.springframework.stereotype.Controller;
