@@ -1,6 +1,7 @@
 package com.example.shortify;
 
 import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.HtmlButton;
 import com.gargoylesoftware.htmlunit.html.HtmlInput;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import org.junit.jupiter.api.AfterAll;
@@ -63,5 +64,20 @@ public class HomeControllerTest {
         assertNotNull(shortURLInput);
 
     }
+
+    @DisplayName("Test to check if we have a button present")
+    @Test
+    public void whenOpeningPage_aButtonExists() throws Exception{
+        HtmlPage frontpage = webClient.getPage("http://localhost:8080");
+        String buttonXpath = "/html/body/div/form/button";
+
+        HtmlButton button = (HtmlButton) frontpage.getByXPath(buttonXpath).get(0);
+        String buttonText = button.getTextContent();
+
+
+        assertNotNull(button);
+        assertEquals("Click here to get short URL", buttonText);
+    }
+
 
 }

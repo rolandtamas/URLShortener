@@ -33,7 +33,7 @@ public class URLShortenerRestController {
     }
 
     private String getRandomChars(){
-        StringBuilder randomstr= new StringBuilder();
+        StringBuilder randomstr = new StringBuilder();
         String charset="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         for(int i=0;i<5;i++)
         {
