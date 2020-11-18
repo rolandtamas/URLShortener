@@ -4,21 +4,19 @@ import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlButton;
 import com.gargoylesoftware.htmlunit.html.HtmlInput;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.io.IOException;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -50,17 +48,24 @@ public class HomeControllerTest {
         assertEquals("Shortify - Shorten URLs and save time",frontpage.getTitleText());
     }
 
-    @DisplayName("Test to check if 2 input fields are present")
+    @DisplayName("Check to see if full URL Input exists")
     @Test
-    public void whenOpeningPage_twoInputFieldsExist() throws Exception {
+    public void whenOpeningPage_fullURLInputFieldExists() throws Exception {
         HtmlPage frontpage = webClient.getPage("http://localhost:8080");
-        String fullURLXpath="/html/body/div/form/div[1]/input";
-        String shortURLXpath = "/html/body/div/form/div[2]/input";
 
-        HtmlInput fullURLInput = (HtmlInput) frontpage.getByXPath(fullURLXpath).get(0);
-        HtmlInput shortURLInput = (HtmlInput) frontpage.getByXPath(shortURLXpath).get(0);
+        HtmlInput fullURLInput = frontpage.getHtmlElementById("URLInput");
 
         assertNotNull(fullURLInput);
+
+    }
+
+    @DisplayName("Check to see if shorturl input exists")
+    @Test
+    public void whenOpeningPage_shortURLInputFieldExists() throws Exception{
+        HtmlPage frontpage = webClient.getPage("http://localhost:8080");
+
+        HtmlInput shortURLInput = frontpage.getHtmlElementById("shortURL");
+
         assertNotNull(shortURLInput);
 
     }
@@ -69,14 +74,24 @@ public class HomeControllerTest {
     @Test
     public void whenOpeningPage_aButtonExists() throws Exception{
         HtmlPage frontpage = webClient.getPage("http://localhost:8080");
-        String buttonXpath = "/html/body/div/form/button";
 
-        HtmlButton button = (HtmlButton) frontpage.getByXPath(buttonXpath).get(0);
+        HtmlButton button = frontpage.getHtmlElementById("sendButton");
         String buttonText = button.getTextContent();
 
-
+        //check if text on button corresponds to given text
         assertNotNull(button);
+
         assertEquals("Click here to get short URL", buttonText);
+    }
+
+    @DisplayName("Testing to see if we can gather input from the fields")
+    @Test
+    public void whenSettingFullURL_textIsPresent() throws Exception{
+        MockHttpServletRequestBuilder createMessage = post("/shortenurl")
+                .param("full_url","http://www.google.com");
+
+        this.mockMvc.perform(createMessage)
+                .andExpect(content().string(containsString("google"))); //this should work
     }
 
 

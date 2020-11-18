@@ -27,10 +27,10 @@
 <hr style="width: 50%;">
 
 <div class="container">
-<form>
+<form method="post" action="/shortenurl" name="URLForm">
     <div class="form-group">
         <label for="URLInput" >Enter URL here..</label>
-        <input type="text" class="form-control" id="URLInput"/>
+        <input type="url" class="form-control" id="URLInput" name="URLInput"/>
         <small id="URLHelp" class="form-text text-muted">E.g.: https://www.google.com/</small>
     </div>
 
