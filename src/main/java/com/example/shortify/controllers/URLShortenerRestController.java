@@ -13,7 +13,7 @@ import java.util.Map;
 @RestController
 public class URLShortenerRestController {
 
-    private Map<String, ShortURL> shortURLMap = new HashMap<>();
+    private final Map<String, ShortURL> shortURLMap = new HashMap<>();
 
     @RequestMapping(value = "/shortenurl",method = RequestMethod.POST) //here the API gets called
     public ResponseEntity<ShortURL> getShortUrl(@RequestBody ShortURL shortURL){

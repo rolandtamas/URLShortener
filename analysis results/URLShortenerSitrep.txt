@@ -1,0 +1,12 @@
+In urma analizei statice a codului intregului proiect, am gasit:
+	- 2 weak warnings la css
+	- 1 warning la Gradle
+	- 6 warnings la HTML
+	- 19 warnings la Java
+	- 4 warnings si 4 weak warnings la Javascript
+	- 66 greseli de ortografie
+	- 2 warnings XML
+	
+Am rezolvat unele warning-uri la Java(campuri care puteau fi declarate ca final,
+campuri declarate ca nefolosite, declaratii throws nefolosite), majoritatea fiind
+doar importuri nefolosite.

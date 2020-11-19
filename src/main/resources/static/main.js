@@ -1,6 +1,6 @@
 $('document').ready(function(){
     $("#sendButton").click(function(){
-        var fullurl = document.forms["URLForm"]["URLInput"].value;
+        const fullurl = document.forms["URLForm"]["URLInput"].value;
         if(fullurl === "")
         {
             alert("No url inserted");
